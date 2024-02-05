@@ -1,5 +1,6 @@
 import './App.css';
 import Login from './Login';
+import Register from './Register';
 
 function App() {
   return (
@@ -8,14 +9,11 @@ function App() {
 
         <h1>ورود / عضویت</h1>
 
-        <div className="support-note">
-          <span className="note-ie">Sorry, only modern browsers.</span>
-        </div>
-
       </header>
 
       <section className="main">
-        <Login />
+        {/* <Login /> */}
+        <Register />
       </section>
 
     </div>

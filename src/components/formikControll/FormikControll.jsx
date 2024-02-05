@@ -4,6 +4,7 @@ import TextAreaFormik from './TextAreaFormik';
 import SelectFormik from './SelectFormik';
 import RadioFormik from './RadioFormik';
 import CheckBoxFormik from './CheckBoxFormik';
+import TermsCheckBox from './TermsCheckBox';
 
 
 const FormikControll = (props) => {
@@ -23,6 +24,8 @@ const FormikControll = (props) => {
         case "checkbox":
             //props: label,name,options
             return <CheckBoxFormik {...props} />
+        case "terms":
+            return <TermsCheckBox {...props} />
         default:
             return;
     }

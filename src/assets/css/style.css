@@ -1,16 +1,15 @@
-@import url('demo.css');
-@import url('font-awesome.css');
+
 @font-face {
     font-family: "yekan";
-    src: url('/assets/font/Yekan.woff'),
-    url('/assets/font/Yekan.woff2')
+    src: url('../font/Yekan.woff'),
+    url('../font/Yekan.woff2')
     ;
 }
 html,body{
     height: 100%;
 }
 body {
-    background: #563c55 url(/assets/images/blurred.jpg) no-repeat center top;
+    background: #563c55 url(../images/blurred.jpg) no-repeat center top;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -94,6 +93,7 @@ body {
 }
 
 .form-3 input[type=text],
+.form-3 input[type=number],
 .form-3 input[type=password],
 .form-3 input[type=email] {
     /* Size and position */
@@ -125,6 +125,7 @@ body {
 
 .form-3 input[type=text]:hover,
 .form-3 input[type=email]:hover,
+.form-3 input[type=number]:hover,
 .form-3 input[type=password]:hover,
 .form-3 label:hover~input[type=text],
 .form-3 label:hover~input[type=email],
@@ -133,6 +134,7 @@ body {
 }
 
 .form-3 input[type=text]:focus,
+.form-3 input[type=number]:focus,
 .form-3 input[type=email]:focus,
 .form-3 input[type=password]:focus {
     box-shadow: inset 0 0 2px #000;

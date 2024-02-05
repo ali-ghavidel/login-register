@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import FormikControll from './formikControll/FormikControll';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import '../assets/css/style.css';
 
 const initialValues = {
     email: '',
