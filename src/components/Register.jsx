@@ -14,14 +14,23 @@ const initialValues = {
     lname: '',
     auth_mode: 'mobile',
     terms: false,
-    bday: ''
+    bday: '',
+    image: null,
 };
 
 const onSubmit = (values, submitProp) => {
     console.log(submitProp);
+    let formData = new FormData();
+    formData.append("username", values.username);
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+    formData.append("image", values.image);
+    // axios.post("url", formData, {headers: {'content-type': 'multipart/form-data'}})
     setTimeout(() => {
         submitProp.setSubmitting(false);
         submitProp.resetForm();
+        console.log("formData:");
+        console.log(formData.get("image"));
         // submitProp.setFieldTouched("terms",false);
 
     }, 3000);
@@ -42,7 +51,11 @@ const validationSchema = Yup.object({
     confirm_password: Yup.string().oneOf([Yup.ref('password'), ''], 'با رمز عبور مطابقت ندارد').required('لطفا تکرار رمز عبور را پر کنید'),
     fname: Yup.string().matches(/^[\u0600-\u06FF\s0-9a-zA-Z]+$/, 'لطفا الگوی نوشتاری را رعایت کنید'),
     lname: Yup.string().matches(/^[\u0600-\u06FF\s0-9a-zA-Z]+$/, 'لطفا الگوی نوشتاری را رعایت کنید'),
-    terms: Yup.bool().oneOf([true], 'پذیرش قوانین الزامیست')
+    terms: Yup.bool().oneOf([true], 'پذیرش قوانین الزامیست'),
+    image: Yup.mixed()
+    .required("لطفا یک تصویر انتخاب کنید")
+    .test("filesize","حجم عکس نمیتواند بیشتر از 200 کیلوبایت باشد",(value)=>value && value.size <= (200*1024))
+    .test("filetype", "لطفا عکسی با فرمت jpg یا png انتخاب کنید", (value)=>value && (value.type === "image/jpeg" ||  value.type === "image/png"))
 })
 
 const auth_modes = [
@@ -64,8 +77,8 @@ const Register = () => {
             onSubmit={onSubmit}
             validationSchema={validationSchema}
             validateOnMount
-            enableReinitialize
-            initialTouched={{terms: true}}
+            // enableReinitialize
+            initialTouched={{terms: true, image: true}}
         >
             {(formik) => {
                 // console.log(formik);
@@ -101,18 +114,26 @@ const Register = () => {
                         <div className="clearfix ">
                             <FormikControll controller="input" type="password" label="تکرار رمز عبور" name="confirm_password" />
                         </div>
-                        <div className="clearfix radio">
-                            <FormikControll controller="terms" label="قوانین را مطالعه کرده ام" name="terms" options={[{value: 'yes', text: "بلی"}]} />
-                        </div>
+                        
                         <div className="clearfix">
                             <FormikControll controller="date" label="تاریخ تولد" name="bday" formik={formik} />
+                        </div>
+
+                        <div className="clearfix">
+                            <FormikControll controller="file" label="عکس کاربر" name="image" formik={formik} />
+                        </div>
+
+                        <div className="clearfix radio">
+                            <FormikControll controller="terms" label="قوانین را مطالعه کرده ام" name="terms" options={[{value: 'yes', text: "بلی"}]} />
                         </div>
                         {/* <div className="clearfix ">
                             <FormikControll controller="checkbox" label="قوانین را مطالعه کرده ام" name="terms" options={['yes']} />
                         </div> */}
 
                         <div className="x">
-                            <button type='submit' name='submit' disabled={!formik.isValid}>{
+                            <button type='submit' name='submit'
+                            // disabled={!formik.isValid}
+                            >{
                                 formik.isSubmitting ? (
                                     <div className="spinner-grow spinner-grow-sm text-light" role="status">
                                         <span className="visually-hidden">Loading...</span>

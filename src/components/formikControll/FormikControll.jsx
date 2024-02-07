@@ -5,7 +5,8 @@ import SelectFormik from './SelectFormik';
 import RadioFormik from './RadioFormik';
 import CheckBoxFormik from './CheckBoxFormik';
 import TermsCheckBox from './TermsCheckBox';
-import Date from './Date'
+import Date from './Date';
+import FormikFile from './FormikFile';
 
 
 const FormikControll = (props) => {
@@ -29,6 +30,8 @@ const FormikControll = (props) => {
             return <TermsCheckBox {...props} />
         case "date":
             return <Date {...props} />
+        case "file":
+            return <FormikFile {...props} />
         default:
             return;
     }
