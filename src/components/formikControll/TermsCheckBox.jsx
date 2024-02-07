@@ -8,8 +8,8 @@ const TermsCheckBox = ({ name, label, options }) => {
             {/* <label htmlFor={name} className="form-label">{label}</label> */}
             <FastField className="form-control" id={name} name={name} >
                 {(props) => {
-                    console.log("checkbox props: ");
-                    console.log(props);
+                    // console.log("checkbox props: ");
+                    // console.log(props);
                     
                     return options.map((v, key) => {
                         return (

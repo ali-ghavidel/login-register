@@ -95,7 +95,8 @@ body {
 .form-3 input[type=text],
 .form-3 input[type=number],
 .form-3 input[type=password],
-.form-3 input[type=email] {
+.form-3 input[type=email],
+.form-3 select {
     /* Size and position */
     width: 50%;
     float: left;
@@ -129,14 +130,17 @@ body {
 .form-3 input[type=password]:hover,
 .form-3 label:hover~input[type=text],
 .form-3 label:hover~input[type=email],
-.form-3 label:hover~input[type=password] {
+.form-3 label:hover~input[type=password],
+.form-3 select
+{
     background: #27292c;
 }
 
 .form-3 input[type=text]:focus,
 .form-3 input[type=number]:focus,
 .form-3 input[type=email]:focus,
-.form-3 input[type=password]:focus {
+.form-3 input[type=password]:focus,
+.form-3 select {
     box-shadow: inset 0 0 2px #000;
     background: #494d54;
     border-color: #51cbee;
@@ -264,4 +268,27 @@ button {
 
 .no-pointerevents .form-3 p:nth-child(1):before {
     display: none;
+}
+.formikDateInput{
+    position: relative;
+}
+.formikDateInput_icon{
+    position: absolute;
+    left: 6px;
+    top: 9px;
+}
+.date{
+    position: relative;
+}
+.datePicker{
+    position: absolute;
+    left: 3rem;
+    top: 0.2rem;
+}
+.datePicker select{
+    /* height: 1.5rem; */
+    font-size: 0.5rem;
+}
+.datePicker select option{
+    font-size: 1rem;
 }

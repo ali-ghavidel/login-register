@@ -13,14 +13,16 @@ const initialValues = {
     fname: '',
     lname: '',
     auth_mode: 'mobile',
-    terms: false
+    terms: false,
+    bday: ''
 };
 
 const onSubmit = (values, submitProp) => {
-    // console.log(submitProp);
+    console.log(submitProp);
     setTimeout(() => {
         submitProp.setSubmitting(false);
         submitProp.resetForm();
+        // submitProp.setFieldTouched("terms",false);
 
     }, 3000);
     console.log(values);
@@ -66,7 +68,7 @@ const Register = () => {
             initialTouched={{terms: true}}
         >
             {(formik) => {
-                console.log(formik);
+                // console.log(formik);
                 return (
                     <Form className="form-3">
                         <div className="clearfix">
@@ -101,6 +103,9 @@ const Register = () => {
                         </div>
                         <div className="clearfix radio">
                             <FormikControll controller="terms" label="قوانین را مطالعه کرده ام" name="terms" options={[{value: 'yes', text: "بلی"}]} />
+                        </div>
+                        <div className="clearfix">
+                            <FormikControll controller="date" label="تاریخ تولد" name="bday" formik={formik} />
                         </div>
                         {/* <div className="clearfix ">
                             <FormikControll controller="checkbox" label="قوانین را مطالعه کرده ام" name="terms" options={['yes']} />
